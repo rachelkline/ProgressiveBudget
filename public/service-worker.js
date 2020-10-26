@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const FILES_TO_CACHE = [
     //grab all of the files in public
     "/",
