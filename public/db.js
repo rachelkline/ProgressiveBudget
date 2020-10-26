@@ -6,7 +6,6 @@ request.onupgradeneeded = function(event) {
     //create os called 'pending' with auto Inc -> true
     const db = event.target.result;
     db.createObjectStore("pending", { autoIncrement: true });
-    store.clear();
 };
 
 request.onsuccess = function(event) {
@@ -19,6 +18,15 @@ request.onsuccess = function(event) {
 
 request.onerror = function(event) {
     console.log(`ERROR: ${event.target.errorCode}`);
+};
+
+function saveRecord(record) {
+    //create transaction with readwrite
+    const transaction = db.transaction(["pending"], "readwrite");
+    const store = transaction.objectStore("pending");
+
+    //add record to store
+    store.add(record);
 };
 
 function checkDatabase() {
@@ -37,7 +45,7 @@ function checkDatabase() {
                 headers: {
                     Accept: "application/json, text/plain, */*",
                     "Content-Type": "application/json",
-                },
+                }
             }).then(response => response.json()
             ).then(() => {
                 const transaction = db.transaction(["pending"], "readwrite");
@@ -47,14 +55,10 @@ function checkDatabase() {
         }
     };
 }
-
-function saveRecord(record) {
-    //create transaction with readwrite
+function deletePending() {
     const transaction = db.transaction(["pending"], "readwrite");
     const store = transaction.objectStore("pending");
-
-    //add record to store
-    store.add(record);
-};
+    store.clear();
+}
 
 window.addEventListener("online", checkDatabase);
