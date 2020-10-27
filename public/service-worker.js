@@ -1,9 +1,9 @@
-const FILES_TO_CACHE = [
+var FILES_TO_CACHE = [
     //grab all of the files in public
     "/",
     "/index.html",
     "/index.js",
-    "/style.css",
+    "/styles.css",
     "/manifest.webmanifest",
     "/db.js"
 ];
@@ -45,7 +45,7 @@ self.addEventListener("fetch", function (evt) {
         evt.respondWith(
             caches.open(DATA_CACHE_NAME)
                 .then(cache => {
-                    fetch(ect.request)
+                    fetch(evt.request)
                         .then(response => {
                             if (response.status === 200) {
                                 cache.put(evt.request.url, response.clone());
