@@ -45,7 +45,7 @@ self.addEventListener("fetch", function (evt) {
         evt.respondWith(
             caches.open(DATA_CACHE_NAME)
                 .then(cache => {
-                    fetch(evt.request)
+                    return fetch(evt.request)
                         .then(response => {
                             if (response.status === 200) {
                                 cache.put(evt.request.url, response.clone());
@@ -61,12 +61,11 @@ self.addEventListener("fetch", function (evt) {
     }
     // Shows files from the cache when offline
     evt.respondWith(
-        caches
-            .open(CACHE_NAME)
+        caches.open(CACHE_NAME)
             .then(cache => {
                 return cache.match(evt.request)
                     .then(response => {
-                        return response || fetch(evt.request)
+                        return response || fetch(evt.request);
                     });
             })
     );
