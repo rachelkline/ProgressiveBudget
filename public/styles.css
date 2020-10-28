@@ -8,6 +8,16 @@ button, input {
   font-family: Arial;
 }
 
+.btn {
+  background-color: #6666ff;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #5252cf;
+  color: white;
+}
+
 table {
   width: 100%;
 }
