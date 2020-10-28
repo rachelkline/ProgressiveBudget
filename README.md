@@ -2,10 +2,10 @@
 ![Language](https://img.shields.io/static/v1?label=JavaScript&message=language&color=brightgreen)
 
 ## Deployed Site:
-https://floating-ocean-33858.herokuapp.com/
+https://rk-progressive-budget.herokuapp.com/
 
 
-![IMAGE](rmImgs/balance.png)
+![IMAGE](rmImgs/budget.png)
 ![IMAGE](rmImgs/graph.png)
 
 ---
@@ -57,9 +57,13 @@ To run this application:
 
 2. Open the `console log` and click the `Application` tab
 
-4. Click `Service Workers` and check all of the boxes
+3. Click `Service Workers` and check all of the boxes
 
-5. Enter in some transactions. Even though the application is online, the transactions still seem to post. To see what's happening behind the scenes, check the `Pen`
+4. Enter in some transactions. Even though the application is offline, the transactions still seem to post. To see what's happening behind the scenes, check the `Pending` transactions and you should see something like this:
+![IMAGE](rmImgs/pending.png)
+
+5. Once you switch the service worker back to online, the transactions will update and post into the database.
+
 ---
 
 <img src = "rmImgs/laptop-code-solid.svg" width="40">
@@ -79,30 +83,23 @@ To run this application:
 ## Directory Structure
 ```
 ├── models
-│   └── Workout.js
-│   └── index.js
+│   └── transaction.js
 │ 
 ├── node_modules
 │ 
 ├── public
-│   └── api.js 
-│   └── exercise.html
-│   └── exercise.js 
+│   >icons
+│   └── db.js 
 │   └── index.html
 │   └── index.js
-│   └── stats.html
-│   └── stats.js 
-│   └── style.css
-│   └── workout.js      
+│   └── manifest.webmanifest
+│   └── service-worker.js 
+│   └── styles.css     
 │
-├── rmImgs
+├── >rmImgs
 │
 ├── routes
-│   └── api-routes.js
-│   └── html-routes.js
-│
-├── seeders
-│   └── seed.js
+│   └── api.js
 │ 
 ├── package.json
 │ 
