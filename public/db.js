@@ -1,6 +1,6 @@
 //create a new database request for a "budget" db
 let db;
-const request = indexedDB.open("budget", 1);
+const request = indexedDB.open('budget', 1);
 
 request.onupgradeneeded = function(event) {
     //create os called 'pending' with auto Inc -> true
@@ -31,7 +31,7 @@ function saveRecord(record) {
     store.add(record);
   }
 
-function checkDatabase() {
+  function checkDatabase() {
     // open a transaction on your pending db
     const transaction = db.transaction(['pending'], 'readwrite');
     // access your pending object store
@@ -63,10 +63,6 @@ function checkDatabase() {
       }
     };
   }
-function deletePending() {
-    const transaction = db.transaction(["pending"], "readwrite");
-    const store = transaction.objectStore("pending");
-    store.clear();
-}
-
-window.addEventListener("online", checkDatabase);
+  
+  // listen for app coming back online
+  window.addEventListener('online', checkDatabase);
